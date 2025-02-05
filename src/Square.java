@@ -1,3 +1,5 @@
+import java.awt.*;
+
 /**
  * A class written to support the TicTacToe Game.
  *
@@ -16,6 +18,9 @@ public class Square {
     private int row;
     private int col;
     private boolean isWinningSquare;
+    private static final int WINDOW_WIDTH = 500;
+    private static final int WINDOW_HEIGHT = 500;
+    private TicTacToeViewer frontend;
 
     /**
      * Constructor to initialize one Square of the
@@ -23,12 +28,16 @@ public class Square {
      * @param row the row the square is in
      * @param col the column the square is in
      */
-    public Square(int row, int col) {
+    public Square(int row, int col, TicTacToeViewer frontend) {
         this.row = row;
         this.col = col;
+        this.frontend = frontend;
+
 
         this.marker = TicTacToe.BLANK;
         this.isWinningSquare = false;
+        imageX = new ImageIcon("Resources/fish1.png").getImage();
+        imageO = new ImageIcon("Resources/fish2.png").getImage();
     }
 
     /******************** Getters and Setters ********************/
@@ -57,5 +66,14 @@ public class Square {
      */
     public String toString() {
         return this.marker;
+    }
+
+    public void draw(Graphics g) {
+        if (marker.toLowerCase().equals("x")) {
+            g.drawImage(imageX, (row+1)100, (col+1)100, 100, 100, frontend);
+        }
+        else if (marker.toLowerCase().equals("o")) {
+            g.drawImage(imageO, (row+1)100, (col+1)100, 100, 100, frontend);
+        }
     }
 }
