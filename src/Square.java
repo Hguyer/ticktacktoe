@@ -12,6 +12,7 @@ import java.awt.*;
  * @version: Jan 2023
  */
 
+
 public class Square {
 
     private String marker;

@@ -11,6 +11,7 @@ public class TicTacToeViewer extends JFrame {
     private static final int TEXT_Y = 73;
     private TicTacToe back;
 
+
     public TicTacToeViewer(TicTacToe back) {
         this.back = back;
 
