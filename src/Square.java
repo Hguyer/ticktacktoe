@@ -4,10 +4,8 @@ import java.awt.*;
 public class Square {
 
     private String marker;
-    private int row;
-    private int col;
-    private Image imageX;
-    private Image imageO;
+    private int row, col;
+    private Image imageX, imageO;
     private boolean isWinningSquare;
     private static final int BOX_LENGTH = 100;
     private static final int FIRST_X = 100;
