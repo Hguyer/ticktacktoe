@@ -1,26 +1,17 @@
+import javax.swing.*;
 import java.awt.*;
-
-/**
- * A class written to support the TicTacToe Game.
- *
- * Each Square object is one position of the TicTacToe
- * board. It maintains information on the marker, its
- * location on the board, and whether it is part
- * of the winning set.
- *
- * @author: Nandhini Namasivayam
- * @version: Jan 2023
- */
-
 
 public class Square {
 
     private String marker;
     private int row;
     private int col;
+    private Image imageX;
+    private Image imageO;
     private boolean isWinningSquare;
-    private static final int WINDOW_WIDTH = 500;
-    private static final int WINDOW_HEIGHT = 500;
+    private static final int BOX_LENGTH = 100;
+    private static final int FIRST_X = 100;
+    private static final int FIRST_Y = 100;
     private TicTacToeViewer frontend;
 
     /**
@@ -29,6 +20,7 @@ public class Square {
      * @param row the row the square is in
      * @param col the column the square is in
      */
+    // construct the square constructor
     public Square(int row, int col, TicTacToeViewer frontend) {
         this.row = row;
         this.col = col;
@@ -37,8 +29,9 @@ public class Square {
 
         this.marker = TicTacToe.BLANK;
         this.isWinningSquare = false;
-        imageX = new ImageIcon("Resources/fish1.png").getImage();
-        imageO = new ImageIcon("Resources/fish2.png").getImage();
+        // give the image pathway
+        imageX = new ImageIcon("Resources/X.png").getImage();
+        imageO = new ImageIcon("Resources/O.png").getImage();
     }
 
     /******************** Getters and Setters ********************/
@@ -70,11 +63,18 @@ public class Square {
     }
 
     public void draw(Graphics g) {
-        if (marker.toLowerCase().equals("x")) {
-            g.drawImage(imageX, (row+1)100, (col+1)100, 100, 100, frontend);
+        // if the square is a winning square make it green
+        if (this.isWinningSquare){
+            g.setColor(Color.GREEN);
+            // fill it with the correct x y and dimensions
+            g.fillRect(col * BOX_LENGTH + FIRST_X, row * BOX_LENGTH + FIRST_Y, BOX_LENGTH, BOX_LENGTH);
         }
-        else if (marker.toLowerCase().equals("o")) {
-            g.drawImage(imageO, (row+1)100, (col+1)100, 100, 100, frontend);
+        // if we get an x make an x same with the o
+        if (marker.equals("X")) {
+            g.drawImage(imageX,(col+1)*100, (row+1)*100, BOX_LENGTH, BOX_LENGTH, frontend);
+        }
+        else if (marker.equals("O")) {
+        g.drawImage(imageO, (col+1)*100, (row+1)*100, BOX_LENGTH, BOX_LENGTH, frontend);
         }
     }
 }
